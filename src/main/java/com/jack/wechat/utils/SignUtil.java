@@ -10,7 +10,7 @@ import java.util.Arrays;
  */
 public class SignUtil {
     // 与接口配置信息中的 Token 要一致
-    private static final String token = "token";
+    private static final String token = "jacky";
     /**
      * 验证签名
      * @param signature
