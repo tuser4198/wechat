@@ -1,9 +1,14 @@
 package com.jack.wechat.controller;
 
+import com.jack.wechat.utils.MessageUtil;
 import com.jack.wechat.utils.SignUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 
 /**
@@ -11,12 +16,12 @@ import org.springframework.web.bind.annotation.*;
  * @date: 2019/3/14
  */
 @RestController
-@RequestMapping("/auth/")
-public class AuthController {
+@RequestMapping("/msg/")
+public class PongController {
 
-    private static final Logger LOGGER =LoggerFactory.getLogger(AuthController.class);
+    private static final Logger LOGGER =LoggerFactory.getLogger(PongController.class);
 
-    @GetMapping("/handshake")
+    @GetMapping("/pong")
     public String handShakeAuth(
             @RequestParam(name = "signature") String signature,
             @RequestParam(name = "timestamp") String timestamp,
@@ -28,6 +33,12 @@ public class AuthController {
             return echostr;
         }
         throw new RuntimeException("非法请求");
+    }
+
+    @PostMapping(value = "/pong")
+    public void pong(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        Map<String, String> map=MessageUtil.parseXml(request);
+        LOGGER.info("payload: {}"+map.get("Content"));
     }
 
 }
