@@ -25,7 +25,7 @@ public class SignUtil {
      * @return
      */
     public static boolean checkSignature(String signature, String timestamp, String nonce) {
-        String[] arr = new String[]{token, timestamp, nonce};
+        String[] arr = new String[] {token, timestamp, nonce};
         // 将 token、timestamp、nonce 三个参数进行字典序排序
         Arrays.sort(arr);
         StringBuilder content = new StringBuilder();
@@ -38,7 +38,8 @@ public class SignUtil {
         try {
             md = MessageDigest.getInstance("SHA-1");
             // 将三个参数字符串拼接成一个字符串进行 sha1 加密
-            byte[] digest = md.digest(content.toString().getBytes());
+            byte[] digest = md.digest(content.toString()
+                .getBytes());
             tmpStr = byteToStr(digest);
         } catch (NoSuchAlgorithmException e) {
             LOGGER.error("Error msg:{}", e.getMessage());

@@ -1,22 +1,21 @@
 package com.jack.wechat.utils;
 
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.core.util.QuickWriter;
+import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
+import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
+import com.thoughtworks.xstream.io.xml.XppDriver;
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+
+import javax.servlet.http.HttpServletRequest;
 import java.io.InputStream;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.dom4j.Document;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
-
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.core.util.QuickWriter;
-import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
-import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
-import com.thoughtworks.xstream.io.xml.XppDriver;
 /**
  * @author: Jacky Chai
  * @date: 2019/3/25
@@ -83,10 +82,10 @@ public class MessageUtil {
     public static final String EVENT_TYPE_CLICK = "CLICK";
 
     /**
-     * @Description: 解析微信发来的请求（XML）
-     * @param @param request
+     * @param @param  request
      * @param @return
      * @param @throws Exception
+     * @Description: 解析微信发来的请求（XML）
      */
     @SuppressWarnings("unchecked")
     public static Map<String, String> parseXml(HttpServletRequest request) throws Exception {
@@ -119,6 +118,7 @@ public class MessageUtil {
             return new PrettyPrintWriter(out) {
                 // 对所有 xml 节点的转换都增加 CDATA 标记
                 boolean cdata = true;
+
                 @SuppressWarnings("rawtypes")
                 public void startNode(String name, Class clazz) {
                     super.startNode(name, clazz);

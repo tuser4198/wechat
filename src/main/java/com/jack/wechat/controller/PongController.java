@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
-
 /**
  * @author: jacky
  * @date: 2019/3/14
@@ -19,26 +18,23 @@ import java.util.Map;
 @RequestMapping("/msg/")
 public class PongController {
 
-    private static final Logger LOGGER =LoggerFactory.getLogger(PongController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PongController.class);
 
     @GetMapping("/pong")
-    public String handShakeAuth(
-            @RequestParam(name = "signature") String signature,
-            @RequestParam(name = "timestamp") String timestamp,
-            @RequestParam(name = "nonce") String nonce,
-            @RequestParam(name = "echostr") String echostr
-    ) {
-        LOGGER.info("signature:{},timestamp:{},nonce:{},echostr:{}",signature,timestamp,nonce,echostr);
-        if(SignUtil.checkSignature(signature,timestamp,nonce)){
+    public String handShakeAuth(@RequestParam(name = "signature") String signature,
+        @RequestParam(name = "timestamp") String timestamp, @RequestParam(name = "nonce") String nonce,
+        @RequestParam(name = "echostr") String echostr) {
+        LOGGER.info("signature:{},timestamp:{},nonce:{},echostr:{}", signature, timestamp, nonce, echostr);
+        if (SignUtil.checkSignature(signature, timestamp, nonce)) {
             return echostr;
         }
         throw new RuntimeException("非法请求");
     }
 
     @PostMapping(value = "/pong")
-    public void pong(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        Map<String, String> map=MessageUtil.parseXml(request);
-        LOGGER.info("payload: {}"+map.get("Content"));
+    public void pong(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Map<String, String> map = MessageUtil.parseXml(request);
+        LOGGER.info("payload: {}" + map.get("Content"));
     }
 
 }

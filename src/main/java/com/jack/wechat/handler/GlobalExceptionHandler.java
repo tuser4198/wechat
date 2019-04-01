@@ -15,13 +15,16 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    private static final Logger LOGGER =LoggerFactory.getLogger(GlobalExceptionHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
     @ExceptionHandler(value = Exception.class)
     public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
-        LOGGER.error("Url:{},Occur exception:{}",req.getRequestURL(),e.getMessage());
+        LOGGER.error("Url:{},Occur exception:{}", req.getRequestURL(), e.getMessage());
         ModelAndView mav = new ModelAndView();
         mav.addObject("exception", e.getMessage());
         mav.addObject("url", req.getRequestURL());
+        System.out.println(
+            "adadaddddddddddddddddssssddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
         return mav;
     }
 }
