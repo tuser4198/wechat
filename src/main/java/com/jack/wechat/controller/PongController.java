@@ -34,7 +34,9 @@ public class PongController {
     @PostMapping(value = "/pong")
     public void pong(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Map<String, String> map = MessageUtil.parseXml(request);
-        LOGGER.info("payload: {}" + map.get("Content"));
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            System.out.println("key: " + entry.getKey() + ",value: " + entry.getValue());
+        }
     }
 
 }
