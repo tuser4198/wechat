@@ -2,7 +2,6 @@ package com.jack.wechat.enums;
 
 import com.google.common.collect.Maps;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.Map;
 
@@ -13,29 +12,31 @@ import java.util.Map;
  */
 @Getter
 public enum MsgTypeEnum {
-    EVENT(1, "事件"),
-    TEXT(2, "文本"),
-    IMAGE(3, "图片"),
-    LOCATION(4, "地理位置"),
-    LINK(5, "链接"),
-    VIDEO(6, "视频");
+    TEXT("text", "文本"),
+    IMAGE("image", "图片"),
+    LOCATION("location", "地理位置"),
+    LINK("link", "链接"),
+    VOICE("voice", "语音"),
+    EVENT("event", "事件"),
+    SHORT_VIDEO("shortvideo", "短视频"),
+    VIDEO("video", "视频");
 
-    private int id;
+    private String code;
 
     private String desc;
 
-    public static Map<Integer,MsgTypeEnum> MAP;
+    public static Map<String, MsgTypeEnum> MAP;
 
     static {
         MsgTypeEnum[] values = values();
         MAP = Maps.newHashMapWithExpectedSize(values.length);
         for (MsgTypeEnum value : values) {
-            MAP.put(value.id, value);
+            MAP.put(value.code, value);
         }
     }
 
-    MsgTypeEnum(int id, String desc) {
-        this.id = id;
+    MsgTypeEnum(String code, String desc) {
+        this.code = code;
         this.desc = desc;
     }
 

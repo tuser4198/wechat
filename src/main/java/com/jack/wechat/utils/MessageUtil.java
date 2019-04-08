@@ -103,8 +103,11 @@ public class MessageUtil {
         List<Element> elementList = root.elements();
 
         // 遍历所有子节点
-        for (Element e : elementList)
-            map.put(e.getName(), e.getText());
+        for (Element e : elementList) {
+            String name = e.getName();
+            map.put(name.substring(0, 1)
+                .toLowerCase() + name.substring(1), e.getText());
+        }
 
         // 释放资源
         inputStream.close();
