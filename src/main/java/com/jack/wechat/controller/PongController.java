@@ -52,9 +52,11 @@ public class PongController {
         map.remove("createTime");
         Msg msg = JsonUtil.readValue(JsonUtil.toJSon(map), Msg.class);
         msg.setCreateTime(LocalDateTimeUtil.getCurrentDateTime());
-        msg.setContent(EmojiParser.parseToUnicode(msg.getContent()));
+        //        msg.setContent(EmojiParser.parseToUnicode(msg.getContent()));
         msgMapper.insert(msg);
-        lastMsg = JsonUtil.toJSon(msgMapper.selectById(msg.getId()));
+        Msg dbMsg = msgMapper.selectById(msg.getId());
+        dbMsg.setContent(EmojiParser.parseToUnicode(dbMsg.getContent()));
+        lastMsg = JsonUtil.toJSon(dbMsg);
         LOGGER.info(lastMsg);
     }
 
