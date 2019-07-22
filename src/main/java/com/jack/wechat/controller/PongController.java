@@ -1,9 +1,9 @@
 package com.jack.wechat.controller;
 
-import com.baomidou.mybatisplus.core.toolkit.BeanUtils;
 import com.jack.wechat.msg.entity.Msg;
 import com.jack.wechat.msg.mapper.MsgMapper;
 import com.jack.wechat.msg.service.IMsgService;
+import com.jack.wechat.utils.JsonUtil;
 import com.jack.wechat.utils.MessageUtil;
 import com.jack.wechat.utils.SignUtil;
 import org.slf4j.Logger;
@@ -47,10 +47,9 @@ public class PongController {
     public void pong(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Map map = MessageUtil.parseXml(request);
         LOGGER.info(map.toString());
-        Msg msg = BeanUtils.mapToBean(map, Msg.class);
+        Msg msg = JsonUtil.readValue(JsonUtil.toJSon(map), Msg.class);
         msgMapper.insert(msg);
-        lastMsg = BeanUtils.beanToMap(msgMapper.selectById(msg.getId()))
-            .toString();
+        lastMsg = JsonUtil.toJSon(msgMapper.selectById(msg.getId()));
         LOGGER.info(lastMsg);
     }
 
