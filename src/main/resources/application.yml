@@ -39,7 +39,7 @@ spring:
          statement-log-enabled: true
          statement-log-error-enabled: true
          enabled: true
-     url: jdbc:mysql://localhost:3306/wechat?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&useSSL=false
+     url: jdbc:mysql://localhost:3306/wechat?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&useSSL=false&&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
      username: root
      password:
      initial-size: 10
