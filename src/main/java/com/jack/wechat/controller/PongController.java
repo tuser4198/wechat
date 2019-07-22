@@ -4,8 +4,10 @@ import com.jack.wechat.msg.entity.Msg;
 import com.jack.wechat.msg.mapper.MsgMapper;
 import com.jack.wechat.msg.service.IMsgService;
 import com.jack.wechat.utils.JsonUtil;
+import com.jack.wechat.utils.LocalDateTimeUtil;
 import com.jack.wechat.utils.MessageUtil;
 import com.jack.wechat.utils.SignUtil;
+import com.vdurmont.emoji.EmojiParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +49,10 @@ public class PongController {
     public void pong(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Map map = MessageUtil.parseXml(request);
         LOGGER.info(map.toString());
+        map.remove("createTime");
         Msg msg = JsonUtil.readValue(JsonUtil.toJSon(map), Msg.class);
+        msg.setCreateTime(LocalDateTimeUtil.getCurrentDateTime());
+        msg.setContent(EmojiParser.parseToUnicode(msg.getContent()));
         msgMapper.insert(msg);
         lastMsg = JsonUtil.toJSon(msgMapper.selectById(msg.getId()));
         LOGGER.info(lastMsg);
