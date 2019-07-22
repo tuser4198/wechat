@@ -1,7 +1,7 @@
 package com.jack.wechat.msg.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+//import com.baomidou.mybatisplus.annotation.IdType;
+//import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -54,7 +54,7 @@ public class Msg implements Serializable {
      */
     private Integer actionType;
 
-    @TableId(value = "id", type = IdType.AUTO)
+    //    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**

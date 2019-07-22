@@ -5,52 +5,52 @@ logging:
   level:
     root: INFO
 
-# mybaits-plus配置
-mybatis-plus:
-  mapper-locations: classpath:/mapper/*Mapper.xml
-  global-config:
-    banner: false
-    db-config:
-      id-type: 0
-      field-strategy: 1
-      table-underline: true
-      logic-delete-value: 1
-      logic-not-delete-value: 0
-  configuration:
-    map-underscore-to-camel-case: true
+## mybaits-plus配置
+#mybatis-plus:
+#  mapper-locations: classpath:/mapper/*Mapper.xml
+#  global-config:
+#    banner: false
+#    db-config:
+#      id-type: 0
+#      field-strategy: 1
+#      table-underline: true
+#      logic-delete-value: 1
+#      logic-not-delete-value: 0
+#  configuration:
+#    map-underscore-to-camel-case: true
 spring:
   application:
     name: wechat-server
- # 数据源
- datasource:
-   druid:
-     web-stat-filter:
-       url-pattern: /*
-       exclusions: /druid/*
-     filter:
-       stat:
-         log-slow-sql: true
-         slow-sql-millis: 1000
-         merge-sql: true
-       slf4j:
-         result-set-log-enabled: true
-         connection-log-enabled: true
-         connection-log-error-enabled: true
-         statement-log-enabled: true
-         statement-log-error-enabled: true
-         enabled: true
-     url: jdbc:mysql://localhost:3306/wechat?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&useSSL=false
-     username: root
-     password:
-     initial-size: 10
-     max-active: 200
-     min-idle: 1
-     max-wait: 60000
-     validation-query: SELECT 1
-     test-on-borrow: false
-     test-on-return: false
-     test-while-idle: true
-     time-between-eviction-runs-millis: 60000
-     min-evictable-idle-time-millis: 300000
-     use-global-data-source-stat: true
-     filters: slf4j,stat,wall
+# # 数据源
+#  datasource:
+#    druid:
+#     web-stat-filter:
+#       url-pattern: /*
+#       exclusions: /druid/*
+#     filter:
+#       stat:
+#         log-slow-sql: true
+#         slow-sql-millis: 1000
+#         merge-sql: true
+#       slf4j:
+#         result-set-log-enabled: true
+#         connection-log-enabled: true
+#         connection-log-error-enabled: true
+#         statement-log-enabled: true
+#         statement-log-error-enabled: true
+#         enabled: true
+#     url: jdbc:mysql://localhost:3306/wechat?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&useSSL=false
+#     username: root
+#     password:
+#     initial-size: 10
+#     max-active: 200
+#     min-idle: 1
+#     max-wait: 60000
+#     validation-query: SELECT 1
+#     test-on-borrow: false
+#     test-on-return: false
+#     test-while-idle: true
+#     time-between-eviction-runs-millis: 60000
+#     min-evictable-idle-time-millis: 300000
+#     use-global-data-source-stat: true
+#     filters: slf4j,stat,wall
