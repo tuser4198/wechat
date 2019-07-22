@@ -1,6 +1,7 @@
 package com.jack.wechat;
 
 import com.jack.wechat.filter.LogFilter;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -12,7 +13,7 @@ import org.springframework.core.Ordered;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class,
     DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
-//@MapperScan("com.jack.wechat.msg.mapper")
+@MapperScan("com.jack.wechat.msg.mapper")
 public class WechatApplication {
 
     public static void main(String[] args) {
