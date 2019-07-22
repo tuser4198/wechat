@@ -25,6 +25,8 @@ public class PongController {
     //    @Autowired
     //    private MsgMapper msgMapper;
 
+    private static String lastMsg = "";
+
     @GetMapping("/pong")
     public String handShakeAuth(@RequestParam(name = "signature") String signature,
         @RequestParam(name = "timestamp") String timestamp, @RequestParam(name = "nonce") String nonce,
@@ -39,10 +41,16 @@ public class PongController {
     @PostMapping(value = "/pong")
     public void pong(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Map map = MessageUtil.parseXml(request);
+        lastMsg = (String)map.get("content");
         LOGGER.info(map.toString());
         //        long id = msgMapper.insert(BeanUtils.mapToBean(map, Msg.class));
         //        LOGGER.info(msgMapper.selectById(Long.valueOf(id))
         //            .toString());
+    }
+
+    @GetMapping(value = "/getLastMsg")
+    public String getLastMsg() {
+        return lastMsg;
     }
 
 }
