@@ -57,7 +57,8 @@ public class PongController {
         Msg dbMsg = msgMapper.selectById(msg.getId());
         //        dbMsg.setContent(EmojiParser.parseToUnicode(dbMsg.getContent()));
         dbMsg.setContent(filterEmoji(dbMsg.getContent()));
-        lastMsg = JsonUtil.toJSon(dbMsg);
+        LOGGER.info("test equals:{}", lastMsg.equals(dbMsg.getContent()));
+        lastMsg = dbMsg.getContent();
         LOGGER.info(lastMsg);
     }
 
